@@ -1,0 +1,84 @@
+{# Main view file for the Contact Book #}
+{% partial 'contactbook::create' %}	
+{% partial 'contactbook::import' %}	
+<div id="cb-modal-edit-wrap"></div>
+<div class="row">
+	<div class="col-md-12" id="cb-controls">
+		<div class="btn-group btn-group-xs">
+			<button class="btn btn-success" id="cb-create-btn">New <span class="icon-plus"></span></button>
+		</div>
+		<div class="btn-group btn-group-xs">	
+			<button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+				With Selected <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a class="cb-action-delete" data-request="{{__SELF__}}::onDelete" href="#">Delete</a></li>
+				<li><a class="cb-action-export" href="#">Export</a></li>
+			</ul>
+		</div>
+		<div class="btn-group btn-group-xs">
+			<button class="btn btn-primary" id="cb-import-btn" >Import</button>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div id="flash-messages">&nbsp;</div>
+		<div class="table-responsive">
+			<form id="cb-list-form" class="no-ajax" target="_blank" method="POST" >
+			<table class="table table-bordered" id="cb-table">
+				<thead>
+			        <tr>
+			        	<th class="no-sort text-center">
+			        		<label class="checkbox no-label toggle-all" for="cb-select-all">
+								<input type="checkbox" value="" data-toggle="checkbox" id="cb-select-all" >
+							</label>
+						</th>
+			            <th>Name</th>
+			            <th>Email</th>
+			            <th>Address</th>
+			            <th>Phone</th>
+			            <th class="no-sort">&nbsp;</th>
+			        </tr>
+			    </thead>
+			    <tfoot>
+			        <tr>
+			        	<th>&nbsp;</th>
+			            <th>Name</th>
+			            <th>Email</th>
+			            <th>Address</th>
+			            <th>Phone</th>
+			            <th>&nbsp;</th>
+			        </tr>
+			    </tfoot>
+				<tbody>
+					{% for contact in contactbook.contacts %}
+						<tr class="cb-contact-row" data-id="{{ contact.id }}">
+							<td class="text-center">
+								<label class="checkbox no-label">
+									<input type="checkbox"  value="{{ contact.id }}" name="ids[]" data-toggle="checkbox" class="cb-selected" >
+								</label>
+							</td>
+			                <td>{{ contact.first_name }} {{ contact.last_name }}</td>
+			                <td>{{ contact.email }}</td>
+			                <td>
+			                	{% if contact.street_address %}
+				                	{{ contact.street_address }}<br />
+			                		{{ contact.city }}, {{ contact.state }} {{ contact.zip }}
+			                	{% else %}
+			                		&nbsp;
+			                	{% endif %}
+			                </td>
+			                <td>{{ contact.phone }}</td>
+			                <td class="text-center">
+			                	<button data-request-complete="attachModalListeners()" data-request-data="id: '{{ contact.id }}'" data-request="{{ __SELF__ }}::onEditButton" class="cb-action-edit btn-xs btn-primary btn" data-request-success="$('#cb-modal-edit').modal('show');">Edit</button>
+			                </td>
+			            </tr>
+					{% endfor %}
+					
+				</tbody>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>

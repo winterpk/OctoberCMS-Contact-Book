@@ -1,0 +1,22 @@
+<!-- Modal -->
+<div class="modal fade" id="cb-import-modal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<form method="POST" id="cb-import-form" data-request="" data-request-success="$('#cb-import-modal').modal('hide'); " enctype="multipart/form-data">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close icon-remove" data-dismiss="modal" aria-label="Close" data-dismiss="alert" type="button"></button>
+					<h3>Please upload a valid CSV file to import contacts</h3>
+					<input type="file" class="filestyle" name="import" />
+				</div>
+				<div class="modal-body" id="profile-wizard-modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<div class="form-controls">
+						<input type="submit" name="submit" class="btn btn-success" value="Import">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,4 @@
+1.0.1: 
+  - First version of ContactBook
+  - Create Contact winterpk_contactbook_contacts
+  - create_contacts_table.php

@@ -1,0 +1,6 @@
+{
+    "name": "winterpk/contactbook",
+    "require": {
+        "league/csv": "7.1.1"
+    }
+}
