@@ -6,7 +6,7 @@ A basic contact book for OctoberCMS
 
 ## Dependancies 
 - PHP >= 5
-- jQuery >= ?
+- jQuery >= 1.11.3
 - Boostrap 4
 - Rainlab.Users plugin
 
